@@ -1,0 +1,32 @@
+{
+  "name": "qa_mcp_testing",
+  "version": "1.0.0",
+  "description": "Test Automation con Vitest, Allure y Agentes Gemini vía MCP",
+  "type": "module",
+  "main": "dist/mcp/server.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:ui": "vitest --ui",
+    "mcp:server": "tsx src/mcp/server.ts",
+    "agent:run": "tsx src/agent/gemini-client.ts",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report",
+    "allure:clear": "rimraf allure-results allure-report",
+    "qa:full": "npm run allure:clear && npm run agent:run && npm run allure:generate && npm run allure:open"
+  },
+  "dependencies": {
+    "@google/genai": "^1.42.0",
+    "@google/generative-ai": "^0.24.1",
+    "@modelcontextprotocol/sdk": "^1.0.1",
+    "dotenv": "^17.3.1",
+    "playwright": "^1.49.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "allure-vitest": "^3.0.0",
+    "rimraf": "^5.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.3.0",
+    "vitest": "^4.0.18"
+  }
+}
